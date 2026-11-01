@@ -1,0 +1,13 @@
+file 'screenshot-source.jpg'
+duration 20
+file 'screenshot-checklist.jpg'
+duration 22
+file 'screenshot-evidence.jpg'
+duration 22
+file 'screenshot-dates.jpg'
+duration 22
+file 'screenshot-pantry.jpg'
+duration 22
+file 'screenshot-source.jpg'
+duration 17
+file 'screenshot-source.jpg'

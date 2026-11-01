@@ -1,0 +1,22 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 880
+WrapStyle: 0
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Arial,25,&H00F5F6EF,&H00FFFFFF,&H00353F18,&H00353F18,0,0,0,0,100,100,0,0,1,0,0,2,55,55,30,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:09.00,Default,,0,0,0,,ACCESSKIT — Fine print. Clear next step.\NA free, browser-local notice-to-action workspace.
+Dialogue: 0,0:00:09.00,0:00:20.00,Default,,0,0,0,,Opportunities get buried in complicated instructions.\NThis walkthrough uses screenshots of the working app and fictional example notices.
+Dialogue: 0,0:00:20.00,0:00:31.00,Default,,0,0,0,,Choose Fellowship or paste your own notice.\NThe engine extracts eight checklist items and two written dates from this example.
+Dialogue: 0,0:00:31.00,0:00:42.00,Default,,0,0,0,,Items are grouped by eligibility, documents, next steps, costs, and access details.\NCheck an item to update progress. Conditions and negative wording remain intact.
+Dialogue: 0,0:00:42.00,0:00:53.00,Default,,0,0,0,,Select “View source” on any checklist item.\NThe original tab opens and highlights the exact line that produced it.
+Dialogue: 0,0:00:53.00,0:01:04.00,Default,,0,0,0,,No invented summary or hidden model response.\NThe interface preserves the original wording so users can inspect the evidence.
+Dialogue: 0,0:01:04.00,0:01:15.00,Default,,0,0,0,,The notice lists November 7 and November 9 as apparent deadlines.\NAccessKit flags the difference and asks which date applies instead of choosing one.
+Dialogue: 0,0:01:15.00,0:01:26.00,Default,,0,0,0,,Missing years, relative dates, and missing time zones also need review.\NConfirmed calendar exports are all-day reminders, not exact closing times.
+Dialogue: 0,0:01:26.00,0:01:37.00,Default,,0,0,0,,The pantry example says to bring documents “if available.”\NIt also says no one is turned away for missing documents. Both details stay visible.
+Dialogue: 0,0:01:37.00,0:01:48.00,Default,,0,0,0,,Take the plan with you: Markdown download, print, organizer questions, and calendar files.\NDevice saving is optional. Notice text is processed only in the visitor’s browser.
+Dialogue: 0,0:01:48.00,0:01:57.00,Default,,0,0,0,,Built with HTML, CSS, JavaScript, and Node.js; Codex assistance disclosed.\NTen synthetic edge-case tests pass. This is a working prototype, not a user-validated service.
+Dialogue: 0,0:01:57.00,0:02:05.00,Default,,0,0,0,,Try the working app using the Devpost demo link.\NFree to run. No API key. Open source. AccessKit ↗
