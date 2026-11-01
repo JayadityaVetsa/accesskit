@@ -1,0 +1,13 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {analyze,datesIn,EXAMPLES,markdownPacket,calendarFile} from '../dist/engine.js';
+test('every extracted item maps exactly to its original source span',()=>{for(const sample of Object.values(EXAMPLES)){const r=analyze(sample.text);for(const i of r.items){const s=r.source.find(x=>x.id===i.sourceId);assert.equal(sample.text.slice(s.start,s.end),i.text);}}});
+test('different deadline dates are flagged without choosing a winner',()=>{const r=analyze(EXAMPLES.fellowship.text);assert.equal(r.deadlines.length,2);assert.ok(r.questions.some(q=>q.text.includes('Different deadline dates')));});
+test('negation and exceptions survive extraction',()=>{const r=analyze(EXAMPLES.pantry.text);assert.ok(r.items.some(i=>i.text==='No one is turned away for missing documents.'&&i.negative));assert.ok(r.items.some(i=>i.text==='Bring a photo ID and proof of address if available.'&&i.conditional));const grant=analyze(EXAMPLES.grant.text);assert.ok(grant.items.some(i=>i.text==='Do not upload identity documents or bank details.'&&i.negative));});
+test('invalid dates and missing years cannot silently become calendar dates',()=>{assert.equal(datesIn('February 30, 2026')[0].iso,null);assert.equal(datesIn('February 29, 2028')[0].iso,'2028-02-29');assert.equal(datesIn('November 7')[0].iso,null);});
+test('relative dates raise a review question',()=>{assert.ok(analyze(EXAMPLES.pantry.text).questions.some(q=>q.text.includes('relative or recurring')));});
+test('no detected deadline does not imply no deadline exists',()=>{assert.ok(analyze('Welcome to our program.').questions.some(q=>q.text.includes('does not mean')));});
+test('export retains checked items and original evidence',()=>{const r=analyze(EXAMPLES.grant.text);const md=markdownPacket('Plan',r,new Set([r.items[0].id]));assert.ok(md.includes('- [x]'));assert.ok(md.includes('## Original source'));assert.ok(md.includes('Do not upload identity documents'));});
+test('calendar reminders are all-day, with an exclusive next-day end and escaped title',()=>{const ics=calendarFile('2026-12-31','Title, with; punctuation');assert.ok(ics.includes('DTSTART;VALUE=DATE:20261231'));assert.ok(ics.includes('DTEND;VALUE=DATE:20270101'));assert.ok(ics.includes('SUMMARY:Title\\, with\\; punctuation'));});
+test('empty notices have no fabricated items',()=>{const r=analyze('');assert.equal(r.items.length,0);assert.equal(r.deadlines.length,0);});
+test('multiple dates in one line preserve the same evidence',()=>{const r=analyze('Apply by November 7, 2026 or November 9, 2026.');assert.equal(r.deadlines.length,2);assert.equal(r.deadlines[0].sourceId,r.deadlines[1].sourceId);});
